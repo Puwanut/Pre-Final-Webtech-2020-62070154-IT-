@@ -9,10 +9,10 @@
 </head>
 <body>
     <div class="container mt-3">
-        <form action="" method="GET">
+        <form action="index.php" method="get">
             <p>ระบุคำค้นหา</p>
-            <div class="row">
-                <input type="text" name="searchtext" id="searchtext">
+            <div class="row ">
+                <input type="text" style="width: 80%" name="searchtext" id="searchtext">
                 <button type="submit" class="btn btn-primary ml-1">ค้นหา</button>
             </div>
         </form>
@@ -29,7 +29,7 @@
                 foreach ($result->tracks->items as $item){
                     $name = $item->name;
                     $artist = $item->artists[0]->name;
-                    if (strpos($text, $name) !== false || strpos($text, $artist) !== false) {
+                    if (strpos($text, $name) || strpos($text, $artist)) {
                         echo '<div class="card m-2" style="width: 30%">
                         <img class="card-img-top" src="' . $item->album->images[0]->url . '">
                         <div class="card-body">
@@ -40,7 +40,6 @@
                         </div>
                     </div>';
                     }
-
                 }
             }else {
                 foreach ($result->tracks->items as $item){
